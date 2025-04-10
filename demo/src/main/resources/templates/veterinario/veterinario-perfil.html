@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Veterinario</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/veterinario.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="../../images/logo.png" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a href="panel.html" class="active">Dashboard</a></li>
+                <li><a href="veterinario-citas.html">Citas</a></li>
+                <li><a href="veterinario-pacientes.html">Pacientes</a></li>
+                <li><a href="veterinario-tratamientos.html">Tratamientos</a></li>
+                <li><a href="veterinario-recetas.html">Recetas</a></li>
+                <li><a href="veterinario-perfil.html">Perfil</a></li>
+                <li><a href="../../index.html" id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="veterinario-panel">
+        <h1>Perfil del Veterinario</h1>
+
+        <div class="veterinario-foto-container">
+            <img id="veterinarioFoto" src="../../images/default-vet.png" alt="Foto de Veterinario" class="veterinario-foto">
+            <label class="upload-btn">
+                📸
+                <input type="file" id="fotoUpload" accept="image/*" hidden>
+            </label>
+        </div>
+
+        <form id="veterinarioPerfilForm" class="veterinario-form">
+            <div class="form-group">
+                <label for="vetNombre">Nombre:</label>
+                <input type="text" id="vetNombre" required>
+            </div>
+            <div class="form-group">
+                <label for="vetEmail">Correo Electrónico:</label>
+                <input type="email" id="vetEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="vetTelefono">Teléfono:</label>
+                <input type="text" id="vetTelefono" required>
+            </div>
+            <button type="submit" class="btn-guardar">Actualizar Datos</button>
+        </form>
+
+        <section class="horarios-section">
+            <h2>Disponibilidad Horaria</h2>
+            <input type="date" id="fechaDisponible" required>
+            <div id="horasDisponibles" class="horas-checkbox-container"></div>
+            <button id="guardarDisponibilidad" class="btn-guardar">Guardar Disponibilidad</button>
+        </section>
+    </main>
+
+    <script src="../../js/veterinario-perfil.js"></script>
+</body>
+</html>

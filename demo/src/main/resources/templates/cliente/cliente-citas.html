@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Citas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cliente.css}">
+    <link rel="stylesheet" th:href="@{/css/cliente-citas.css}">
+
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a th:href="@{/cliente/cliente-mascotas}">Mis Mascotas</a></li>
+                <li><a th:href="@{/cliente/cliente-citas}">Apartar Cita</a></li>
+                <li><a th:href="@{/cliente/cliente-recetas}">Mis Recetas</a></li>
+                <li><a th:href="@{/cliente/cliente-tratamientos}">Mis Tratamientos</a></li>
+                <li><a th:href="@{/cliente/cliente-tienda}">Tienda</a></li>
+                <li><a th:href="@{/cliente/cliente-carrito}">Carrito</a></li>
+                <li><a th:href="@{/cliente/cliente-perfil}">Perfil</a></li>
+                <li><a th:href="@{/logout}" id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="panel-cliente">
+        <h1>Mis Citas</h1>
+
+        <!-- Agendar nueva cita -->
+        <section class="info-section">
+            <h2>Agendar Nueva Cita</h2>
+            <form th:action="@{/cliente/citas/agendar}" method="post" th:object="${cita}">
+                <div class="form-group">
+                    <label for="veterinario">Seleccionar Veterinario:</label>
+                    <select id="veterinario" name="veterinario" th:field="*{veterinario}" required>
+                        <option th:each="veterinario : ${veterinarios}" th:value="${veterinario.id}" th:text="${veterinario.nombre}"></option>
+                    </select>
+                </div>
+                <p id="horarioDisponible"></p>
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha" th:field="*{fecha}" required>
+                </div>
+                <div class="form-group">
+                    <label for="hora">Hora:</label>
+                    <select id="hora" name="hora" th:field="*{hora}" required>
+                        <option th:each="hora : ${horasDisponibles}" th:value="${hora}" th:text="${hora}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Agendar Cita</button>
+            </form>
+        </section>
+
+        <!-- Citas existentes -->
+        <section class="info-section">
+            <h2>Historial de Citas</h2>
+            <div class="card-container">
+                <div class="cita-card" th:each="cita : ${citas}">
+                    <h3 th:text="${cita.fecha}"></h3>
+                    <p><strong>Hora:</strong> <span th:text="${cita.hora}"></span></p>
+                    <p><strong>Veterinario:</strong> <span th:text="${cita.veterinario.nombre}"></span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección para reagendar una cita -->
+        <section class="info-section" id="reagendar-section" style="display: none;">
+            <h2>Reagendar Cita</h2>
+            <form th:action="@{/cliente/citas/reagendar}" method="post" th:object="${cita}">
+                <div class="form-group">
+                    <label for="reagendarFecha">Nueva Fecha:</label>
+                    <input type="date" id="reagendarFecha" name="fecha" th:field="*{fecha}" required>
+                </div>
+                <div class="form-group">
+                    <label for="reagendarHora">Nueva Hora:</label>
+                    <select id="reagendarHora" name="hora" th:field="*{hora}" required>
+                        <option th:each="hora : ${horasDisponibles}" th:value="${hora}" th:text="${hora}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Confirmar Cambio</button>
+                <button type="button" class="btn btn-secondary" onclick="cancelarReagendar()">Cancelar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+    </footer>
+
+    <script th:src="@{/js/auth.js}"></script>
+    <script th:src="@{/js/cliente-citas.js}"></script>
+</body>
+</html>

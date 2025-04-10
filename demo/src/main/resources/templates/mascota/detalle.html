@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Mascota - Vibra Animal</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/registro.css}">
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/servicios">Servicios</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+                <li><a href="/login" id="loginBtn">Iniciar Sesión</a></li>
+                <li><a href="/registro" id="registerBtn">Registrarse</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="page-header">
+            <h1 th:text="'Detalle de ' + ${mascota.nombre}"></h1>
+        </section>
+
+        <section class="detalle-mascota">
+            <div class="detalle-contenedor">
+                <div class="detalle-foto">
+                    <h2>Foto</h2>
+                    <img th:if="${mascota.foto != null}"
+                         th:src="@{/images/mascotas/{foto}(foto=${mascota.foto})}"
+                         alt="Foto de Mascota" width="250">
+                    <p th:unless="${mascota.foto != null}">
+                        <em>No hay foto disponible</em>
+                    </p>
+                </div>
+                <div class="detalle-info">
+                    <h2>Información General</h2>
+                    <p><strong>Nombre:</strong> <span th:text="${mascota.nombre}"></span></p>
+                    <p><strong>Especie:</strong> <span th:text="${mascota.especie}"></span></p>
+                    <p><strong>Raza:</strong> <span th:text="${mascota.raza}"></span></p>
+                    <p><strong>Edad:</strong> <span th:text="${mascota.edad}"></span></p>
+                    <p><strong>Dueño (Cédula):</strong> 
+                        <span th:text="${mascota.cliente != null ? mascota.cliente.cedula : 'Sin dueño'}"></span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="detalle-adicional">
+                <h2>Historial Clínico</h2>
+                <div class="detalle-item">
+                    <h3>Citas</h3>
+                    <p th:text="${mascota.citas != null ? mascota.citas : 'No se registraron citas'}"></p>
+                </div>
+                <div class="detalle-item">
+                    <h3>Antecedentes</h3>
+                    <p th:text="${mascota.antecedentes != null ? mascota.antecedentes : 'No se registraron antecedentes'}"></p>
+                </div>
+                <div class="detalle-item">
+                    <h3>Servicios Recibidos</h3>
+                    <p th:text="${mascota.servicios != null ? mascota.servicios : 'No se registraron servicios'}"></p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="boton-volver">
+            <a th:href="@{/mascota/listar}" class="btn"><i class="fas fa-arrow-left"></i> Volver</a>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@vibraanimal.com</p>
+                <p>Teléfono: (123) 456-7890</p>
+                <p>Dirección: Calle Principal #123, Ciudad</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces rápidos</h3>
+                <ul>
+                    <li><a th:href="@{/servicios}">Servicios</a></li>
+                    <li><a th:href="@{/contacto}">Contacto</a></li>
+                    <li><a th:href="@{/login}">Área de clientes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <script type="module" th:src="@{/js/main.js}"></script>
+    <script type="module" th:src="@{/js/auth.js}"></script>
+    
+</body>
+</html>

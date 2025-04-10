@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios - Vibra Animal</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/servicios.css">
+  <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+      </div>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/servicios">Servicios</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+        <li><a href="/login" id="loginBtn">Iniciar Sesión</a></li>
+        <li><a href="/registro" id="registerBtn">Registrarse</a></li>
+        <li id="tiendaNav" style="display: none;"><a th:href="@{/cliente/tienda}">Tienda</a></li>
+        <li id="recetasNav" style="display: none;"><a th:href="@{/veterinario/recetas}">Recetas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Image -->
+    <section class="page-header">
+      <h1>Servicios</h1>
+    </section>
+
+    <!-- Sección principal de servicios -->
+    <section class="servicios-section">
+      <div class="servicios-detallados">
+        <!-- Tarjeta 1 -->
+        <div class="servicio">
+          <div class="servicio-content">
+            <i class="fas fa-hospital"></i>
+            <h2>Hospitalización</h2>
+            <p>
+              Ofrecemos cuidados intensivos 24/7 para gatos y perros que requieren atención médica constante.
+              Nuestras instalaciones están equipadas con tecnología de punta para garantizar la mejor atención.
+            </p>
+            <ul>
+              <li>Monitoreo constante</li>
+              <li>Administración de medicamentos</li>
+              <li>Cuidados post-operatorios</li>
+              <li>Terapia de fluidos</li>
+            </ul>
+            <p class="precio">Desde $100.000cop/día</p>
+          </div>
+          <div class="servicio-image">
+            <img src="../images/1.jpg" alt="Hospitalización">
+          </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="servicio">
+          <div class="servicio-content">
+            <i class="fas fa-syringe"></i>
+            <h2>Tratamientos Especializados</h2>
+            <p>
+              Proporcionamos una amplia gama de tratamientos especializados adaptados a las necesidades
+              específicas de cada paciente.
+            </p>
+            <ul>
+              <li>Quimioterapia</li>
+              <li>Terapia de rehabilitación</li>
+              <li>Tratamientos dermatológicos</li>
+              <li>Terapias para enfermedades crónicas</li>
+            </ul>
+            <p class="precio">Precios variables</p>
+          </div>
+          <div class="servicio-image">
+            <img src="../images/2.jpg" alt="Tratamientos Especializados">
+          </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="servicio">
+          <div class="servicio-content">
+            <i class="fas fa-stethoscope"></i>
+            <h2>Consultas Especializadas</h2>
+            <p>
+              Nuestro equipo de veterinarios especializados ofrece consultas para casos complejos
+              y seguimiento de tratamientos.
+            </p>
+            <ul>
+              <li>Evaluación de casos complejos</li>
+              <li>Segundas opiniones</li>
+              <li>Seguimiento de tratamientos a largo plazo</li>
+              <li>Asesoramiento nutricional especializado</li>
+            </ul>
+            <p class="precio">Desde $80.000cop por consulta</p>
+          </div>
+          <div class="servicio-image">
+            <img src="../images/3.jpg" alt="Consultas Especializadas">
+          </div>
+        </div>
+
+        <!-- Tarjeta 4 -->
+        <div class="servicio">
+          <div class="servicio-content">
+            <i class="fas fa-microscope"></i>
+            <h2>Diagnóstico Avanzado</h2>
+            <p>
+              Contamos con equipos de última generación para realizar diagnósticos precisos y rápidos.
+            </p>
+            <ul>
+              <li>Radiografías digitales</li>
+              <li>Ecografías</li>
+              <li>Análisis de sangre completos</li>
+              <li>Tomografía computarizada</li>
+            </ul>
+            <p class="precio">Precios según el estudio</p>
+          </div>
+          <div class="servicio-image">
+            <img src="../images/4.jpg" alt="Diagnóstico Avanzado">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de CTA -->
+    <section class="cta">
+      <h2>¿Necesitas atención especializada para tu mascota?</h2>
+      <p>No dudes en contactarnos para programar una consulta o solicitar más información sobre nuestros servicios.</p>
+      <a href="contacto.html" class="btn">Contactar ahora</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <p>Email: info@vibraanimal.com</p>
+        <p>Teléfono: (123) 456-7890</p>
+        <p>Dirección: Calle Principal #123, Ciudad</p>
+      </div>
+      <div class="footer-section">
+        <h3>Enlaces rápidos</h3>
+        <ul>
+          <li><a th:href="@{/servicios}">Servicios</a></li>
+          <li><a th:href="@{/contacto}">Contacto</a></li>
+          <li><a th:href="@{/login}">Área de clientes</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Síguenos</h3>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/contacto.js"></script>
+</body>
+</html>

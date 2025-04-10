@@ -1,0 +1,410 @@
+/* ============================
+   1. ENCABEZADO DE LA PÁGINA
+   ============================ */
+
+/* --- NUEVA REGLA: IGUAL A CONTACTO --- */
+.page-header {
+  height: 300px; /* Aumenta la altura de 300px a 320px (o el valor que prefieras) */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url("../images/hero-image.jpg") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 80px;
+}
+
+.page-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* ============================
+   2. NAVEGACIÓN Y FOOTER
+   ============================ */
+.logo img {
+  width: 170px;
+  height: auto;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content .footer-section {
+  margin-bottom: 1.5rem;
+}
+
+.footer-content .footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-content .footer-section ul li {
+  margin: 0.5rem 0;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Menú responsive */
+.nav-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  nav ul {
+    display: none; /* Oculta el menú por defecto en móviles */
+  }
+  
+  nav ul.show {
+    display: block; /* Se muestra al añadir la clase "show" */
+  }
+}
+
+
+/* ============================
+   3. CTA (SECCIÓN FINAL)
+   ============================ */
+.cta {
+  background: var(--primary);
+  color: white;
+  padding: 4rem 0;
+  text-align: center;
+  margin-top: 3rem; 
+}
+
+.cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta .btn {
+  background: white;
+  color: var(--primary);
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+}
+
+.cta .btn:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ============================
+   4. SECCIÓN DE SERVICIOS
+   ============================ */
+/* Fondo verde de extremo a extremo */
+.servicios-section {
+  background: #4CAF50;
+  width: 100%;
+  padding: 5rem 0;
+  margin: 0;
+}
+
+/* Contenedor interno centrado */
+.servicios-detallados {
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+  .servicios-detallados {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos base de cada tarjeta */
+.servicio {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  width: 300px; 
+  margin: 0 auto;
+}
+
+.servicio:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* Texto centrado */
+.servicio-content {
+  text-align: center;
+}
+
+.servicio-content i {
+  font-size: 3rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.servicio-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.servicio-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.servicio-content ul {
+  list-style: none;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.servicio-content ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.servicio-content ul li::before {
+  content: "✓";
+  color: var(--primary);
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.precio {
+  font-size: 1.3rem;
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+/* Imagen debajo del texto */
+.servicio-image {
+  margin-top: 1rem; 
+}
+
+.servicio-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+
+/* ============================
+   5. MEDIA QUERIES GENERALES
+   ============================ */
+@media (max-width: 768px) {
+  .page-header {
+    height: 200px; /* Header más pequeño en móviles */
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  .servicio-content i {
+    font-size: 2.5rem;
+  }
+
+  .servicio-content h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Quita el espacio inferior de servicios para unir con la CTA */
+.servicios-section {
+  padding-bottom: 0 !important;
+}
+
+/* Ajusta la CTA para eliminar margen superior */
+.cta {
+  margin-top: 0 !important;
+}
+
+/* Cambia el fondo de la CTA a gris claro */
+.servicios-section {
+  background: #4CAF50;
+  width: 100%;
+  padding: 5rem 0;
+  padding-bottom: 2rem !important; 
+}
+
+.cta {
+  background: #f5f5f5 !important;
+  color: #333;
+  margin-top: 0.5rem !important;
+  text-align: center;
+  padding: 4rem 0;
+}
+
+
+/* ============================
+   6. ESTILOS PARA LOS NUEVOS ENLACES (DIRECCIÓN, TELÉFONO)
+   ============================ */
+.info-card a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.info-card a:hover {
+  color: var(--primary);
+}
+
+
+/* ============================
+   7. ESTILOS PARA LA LISTA DESPLEGABLE DE EMAILS
+   ============================ */
+.info-card select {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text-secondary);
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.info-card select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+
+/* ============================
+   8. FOOTER ADICIONAL (SI SE REQUIERE)
+   ============================ */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content .footer-section {
+  margin-bottom: 1.5rem;
+}
+
+.footer-content .footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-content .footer-section ul li {
+  margin: 0.5rem 0;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Menú responsive (si es necesario) */
+.nav-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  nav ul {
+    display: none;
+  }
+  
+  nav ul.show {
+    display: block;
+  }
+}
+.hero-image {
+  height: 300px; /* Ajusta este valor según el tamaño que desees */
+  background-size: cover;
+  background-position: center;
+}
+.page-header {
+  height: 60vh; /* Ajusta la altura a un 60% de la ventana */
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url("../images/hero-image.jpg") no-repeat center center; /* Cambia la URL si deseas otra imagen */
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-top: 80px;
+}
+
+.servicios-section {
+  background: inherit !important;
+  width: 100%;
+  padding: 5rem 0;
+  margin: 0;
+}
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Usuarios - Vibra Animal</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal" class="logo-sidebar"/>
+      <h2>Vibra Animal</h2>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a th:href="@{/admin/dashboard}"><i class="fas fa-tachometer-alt"></i>Dashboard</a></li>
+      <li><a th:href="@{/admin/gestion-veterinarios}"><i class="fas fa-user-md"></i>Veterinarios</a></li>
+      <li><a th:href="@{/admin/gestion-mascotas}"><i class="fas fa-paw"></i>Mascotas</a></li>
+      <li><a th:href="@{/admin/gestion-tratamientos}"><i class="fas fa-stethoscope"></i>Tratamientos</a></li>
+      <li><a th:href="@{/admin/gestion-productos}"><i class="fas fa-boxes"></i>Productos</a></li>
+      <li><a th:href="@{/admin/gestion-usuarios}" class="active"><i class="fas fa-users"></i>Usuarios</a></li>
+      <li><a th:href="@{/admin/configuracion}"><i class="fas fa-cog"></i>Configuración</a></li>
+      <li><a th:href="@{/logout}" class="logout-btn"><i class="fas fa-sign-out-alt"></i>Salir</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <header><h1>Gestión de Usuarios</h1></header>
+    
+    <main>
+      <section>
+        <h2>Lista de Veterinarios</h2>
+        <table>
+          <thead><tr><th>Nombre</th><th>Especialidad</th></tr></thead>
+          <tbody>
+            <tr th:each="veterinario : ${veterinarios}">
+              <td th:text="${veterinario.nombre}"></td>
+              <td th:text="${veterinario.especialidad}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Lista de Clientes</h2>
+        <table>
+          <thead><tr><th>Nombre</th><th>Email</th></tr></thead>
+          <tbody>
+            <tr th:each="cliente : ${clientes}">
+              <td th:text="${cliente.nombre}"></td>
+              <td th:text="${cliente.email}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script th:src="@{/js/admin-usuarios.js}"></script>
+</body>
+</html>

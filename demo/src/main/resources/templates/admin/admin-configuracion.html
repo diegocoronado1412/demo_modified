@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Configuración - Admin</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/admin.css}" />
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+        </div>
+        <ul>
+            <li><a th:href="@{/admin/dashboard}">Dashboard</a></li>
+            <li><a th:href="@{/admin/veterinarios}">Veterinarios</a></li>
+            <li><a th:href="@{/admin/mascotas}">Mascotas</a></li>
+            <li><a th:href="@{/admin/tratamientos}">Tratamientos</a></li>
+            <li><a th:href="@{/admin/productos}">Productos</a></li>
+            <li><a th:href="@{/admin/usuarios}">Usuarios</a></li>
+            <li><a th:href="@{/admin/configuracion}" class="active">Configuración</a></li>
+            <li>
+              <a th:href="@{/logout}" class="logout-btn">Cerrar Sesión</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<main class="admin-panel">
+    <h1>Configuración del Sistema</h1>
+    <p>Aquí puedes manejar la configuración general.</p>
+</main>
+
+<footer>
+    <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>

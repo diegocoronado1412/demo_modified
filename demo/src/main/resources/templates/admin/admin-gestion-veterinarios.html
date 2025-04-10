@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrar Veterinarios</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal" class="logo-sidebar"/>
+      <h2>Vibra Animal</h2>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a th:href="@{/admin/dashboard}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+      <li><a th:href="@{/admin/veterinarios}" class="active"><i class="fas fa-user-md"></i> Veterinarios</a></li>
+      <li><a th:href="@{/admin/mascotas}"><i class="fas fa-paw"></i> Mascotas</a></li>
+      <li><a th:href="@{/admin/tratamientos}"><i class="fas fa-stethoscope"></i> Tratamientos</a></li>
+      <li><a th:href="@{/admin/productos}"><i class="fas fa-boxes"></i> Productos</a></li>
+      <li><a th:href="@{/admin/usuarios}"><i class="fas fa-users"></i> Usuarios</a></li>
+      <li><a th:href="@{/admin/configuracion}"><i class="fas fa-cog"></i> Configuración</a></li>
+      <li><a th:href="@{/logout}" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Salir</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <h1>Administrar Veterinarios</h1>
+    </header>
+
+    <main>
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Especialidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="veterinario : ${veterinarios}">
+            <td th:text="${veterinario.nombre}"></td>
+            <td th:text="${veterinario.especialidad}"></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <script type="module" th:src="@{/js/admin-veterinarios.js}"></script>
+</body>
+</html>

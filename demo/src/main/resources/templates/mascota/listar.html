@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Mascotas - Vibra Animal</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/lista.css}">
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/servicios">Servicios</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+                <li><a href="/login" id="loginBtn">Iniciar Sesión</a></li>
+                <li><a href="/registro" id="registerBtn">Registrarse</a></li>
+                <li id="tiendaNav" style="display: none;"><a th:href="@{/cliente/tienda}">Tienda</a></li>
+                <li id="recetasNav" style="display: none;"><a th:href="@{/veterinario/recetas}">Recetas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Lista de Mascotas</h1>
+        </section>
+
+        <section class="tabla-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Especie</th>
+                        <th>Raza</th>
+                        <th>Edad</th>
+                        <th>Foto</th>
+                        <th>Dueño (Cédula)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="mascota : ${mascotas}">
+                        <td th:text="${mascota.nombre}">Nombre</td>
+                        <td th:text="${mascota.especie}">Especie</td>
+                        <td th:text="${mascota.raza}">Raza</td>
+                        <td th:text="${mascota.edad}">Edad</td>
+                        
+                        <td>
+                            <img th:if="${mascota.foto != null}"
+                                 th:src="@{/images/mascotas/{foto}(foto=${mascota.foto})}"
+                                 alt="Foto de Mascota"
+                                 width="100">
+                        </td>
+                        
+                        <td th:text="${mascota.cliente != null ? mascota.cliente.cedula : 'Sin dueño'}">Dueño</td>
+                        
+                        <td class="acciones">
+                            <!-- Botón Ver más -->
+                            <a th:href="@{/mascota/detalle/{id}(id=${mascota.id})}" class="btn-detail">
+                                <i class="fas fa-info-circle"></i> Ver más
+                            </a>
+                            <!-- Botón Editar -->
+                            <a th:href="@{/mascota/editar/{id}(id=${mascota.id})}" class="btn-edit">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <!-- Botón Eliminar -->
+                            <form th:action="@{/mascota/eliminar/{id}(id=${mascota.id})}" method="post" style="display:inline;">
+                                <button type="submit" class="btn-delete">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <a th:href="@{/mascota/crear}" class="btn">Crear nueva Mascota</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@vibraanimal.com</p>
+                <p>Teléfono: (123) 456-7890</p>
+                <p>Dirección: Calle Principal #123, Ciudad</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces rápidos</h3>
+                <ul>
+                    <li><a th:href="@{/servicios}">Servicios</a></li>
+                    <li><a th:href="@{/contacto}">Contacto</a></li>
+                    <li><a th:href="@{/login}">Área de clientes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script type="module" th:src="@{/js/auth.js}"></script>
+    <script type="module" th:src="@{/js/main.js}"></script>
+</body>
+</html>

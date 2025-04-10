@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel del Veterinario - Vibra Animal</title>
+  <!-- CSS principal del proyecto -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <!-- CSS específico para Veterinario (puedes fusionarlo o igualarlo al de Admin) -->
+  <link rel="stylesheet" th:href="@{/css/veterinario.css}" />
+  <!-- CSS para layout del panel (común a ambos) -->
+  <link rel="stylesheet" th:href="@{/css/panel.css}" />
+  <!-- FontAwesome (iconos) -->
+  <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Menú lateral (sidebar) similar al de Admin -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal" class="logo-sidebar"/>
+      <h2>Vibra Animal</h2>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a th:href="@{/veterinario/panel}" class="active">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/veterinario/veterinario-citas}">
+          <i class="fas fa-calendar-check"></i>
+          <span>Citas</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/veterinario/veterinario-pacientes}">
+          <i class="fas fa-paw"></i>
+          <span>Pacientes</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/veterinario/veterinario-tratamientos}">
+          <i class="fas fa-stethoscope"></i>
+          <span>Tratamientos</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/veterinario/veterinario-recetas}">
+          <i class="fas fa-pills"></i>
+          <span>Recetas</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/veterinario/veterinario-perfil}">
+          <i class="fas fa-user"></i>
+          <span>Perfil</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/logout}" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Salir</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Contenedor principal -->
+  <div class="main-content">
+    <header>
+      <h1>Panel de Veterinario</h1>
+      <div class="user-info">
+        <p>Bienvenido, <span th:text="${veterinario.nombre}">Veterinario</span></p>
+      </div>
+    </header>
+
+    <main>
+      <p>Aquí puedes gestionar tus pacientes, citas y tratamientos.</p>
+
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <i class="fas fa-user-md"></i>
+          <div class="stat-info">
+            <h3>Pacientes Activos</h3>
+            <p th:text="${pacientesActivos}">0</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-calendar-check"></i>
+          <div class="stat-info">
+            <h3>Citas Pendientes</h3>
+            <p th:text="${citasPendientes}">0</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-pills"></i>
+          <div class="stat-info">
+            <h3>Tratamientos Asignados</h3>
+            <p th:text="${tratamientosAsignados}">0</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" th:src="@{/js/auth.js}"></script>
+  <script type="module" th:src="@{/js/veterinario.js}"></script>
+</body>
+</html>

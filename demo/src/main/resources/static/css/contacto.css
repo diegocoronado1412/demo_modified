@@ -1,0 +1,257 @@
+.page-header {
+  height: 300px; /* O el tamaño que prefieras */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url("../images/hero-image.jpg") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 80px;
+}
+
+.page-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.contacto-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+.info-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.info-card i {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.info-card h3 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.info-card p {
+  color: var(--text-secondary);
+}
+
+.contacto-form {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contacto-form h2 {
+  text-align: center;
+  color: var(--primary);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.2);
+}
+
+.mapa {
+  margin: 3rem auto;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.mapa h2 {
+  text-align: center;
+  color: var(--primary);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mapa iframe {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.page-header {
+  height: 60vh; /* Ajusta la altura a un 60% de la ventana */
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+              url("../images/hero-image.jpg") no-repeat center center; /* Cambia la URL si deseas otra imagen */
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  margin-top: 80px;
+}
+.logo img {
+  width: 170px; /* Tamaño deseado */
+  height: auto;
+}
+/* =============================
+   ESTILOS PARA LOS NUEVOS ENLACES (DIRECCIÓN, TELÉFONO) 
+   ============================= */
+   .info-card a {
+    display: inline-block;        /* Asegura que el enlace envuelva ícono y texto */
+    text-decoration: none;        /* Quita el subrayado */
+    color: var(--text-secondary); /* Color de texto coherente con el resto */
+    cursor: pointer;              /* Muestra el cursor de enlace al pasar */
+    transition: color 0.3s ease;
+  }
+  
+  .info-card a:hover {
+    color: var(--primary);        /* Cambia de color al pasar el mouse */
+  }
+  
+  /* =============================
+     ESTILOS PARA LA LISTA DESPLEGABLE DE EMAILS 
+     ============================= */
+  .info-card select {
+    display: block;               /* Para que ocupe ancho completo dentro de la card */
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text-secondary);
+    background: #fff;             /* Fondo blanco */
+    cursor: pointer;              /* Cursor de enlace */
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  
+  .info-card select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1); /* Efecto de foco */
+  }
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-content .footer-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .footer-content .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-content .footer-section ul li {
+    margin: 0.5rem 0;
+  }
+  
+  .footer-bottom {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 1rem;
+    font-size: 0.9rem;
+  }
+  /* Oculta el botón de menú en pantallas grandes */
+.nav-toggle {
+  display: none;
+}
+
+/* En pantallas móviles, muestra el botón y oculta el menú */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  
+  /* Oculta el menú por defecto en dispositivos móviles */
+  nav ul {
+    display: none;
+  }
+  
+  /* Cuando se añade la clase "show", se muestra el menú */
+  nav ul.show {
+    display: block;
+    /* Puedes agregar estilos adicionales para que el menú se muestre de forma vertical, etc. */
+  }
+}

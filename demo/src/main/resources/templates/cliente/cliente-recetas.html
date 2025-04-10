@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cliente.css}">
+    <link rel="stylesheet" th:href="@{/css/cliente-recetas.css}">
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a th:href="@{/cliente/cliente-mascotas}">Mis Mascotas</a></li>
+                <li><a th:href="@{/cliente/cliente-citas}">Apartar Cita</a></li>
+                <li><a th:href="@{/cliente/cliente-recetas}">Mis Recetas</a></li>
+                <li><a th:href="@{/cliente/cliente-tratamientos}">Mis Tratamientos</a></li>
+                <li><a th:href="@{/cliente/cliente-tienda}">Tienda</a></li>
+                <li><a th:href="@{/cliente/cliente-carrito}">Carrito</a></li>
+                <li><a th:href="@{/cliente/cliente-perfil}">Perfil</a></li>
+                <li><a th:href="@{/logout}" id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="panel-cliente">
+        <h1>Mis Recetas Médicas</h1>
+        <div class="recetas-grid">
+            <div class="receta-card" th:each="receta : ${recetas}">
+                <h3 th:text="${receta.nombre}"></h3>
+                <p><strong>Descripción:</strong> <span th:text="${receta.descripcion}"></span></p>
+                <p><strong>Fecha:</strong> <span th:text="${receta.fecha}"></span></p>
+                <p><strong>Veterinario:</strong> <span th:text="${receta.veterinario}"></span></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="module" th:src="@{/js/auth.js}"></script>
+    <script type="module" th:src="@{/js/cliente-recetas.js}"></script>
+</body>
+</html>

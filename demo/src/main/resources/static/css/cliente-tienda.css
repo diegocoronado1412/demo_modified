@@ -1,0 +1,82 @@
+.panel-cliente {
+    padding: 2rem;
+    margin-top: 80px;
+  }
+  
+  h1 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .filtros {
+    margin-bottom: 1.5rem;
+  }
+  
+  .filtros label {
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+  
+  .filtros select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+  }
+  
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .producto-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+  
+  .producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .producto-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  
+  .producto-card h3 {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .producto-card p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .btn-agregar {
+    display: block;
+    padding: 0.75rem;
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-agregar:hover {
+    background: var(--primary-dark);
+  }
+  

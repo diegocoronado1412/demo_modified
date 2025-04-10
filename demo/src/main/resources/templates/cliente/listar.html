@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes - Vibra Animal</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/lista.css}">
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/servicios">Servicios</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+                <li><a href="/login" id="loginBtn">Iniciar Sesión</a></li>
+                <li><a href="/registro" id="registerBtn">Registrarse</a></li>                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Lista de Clientes</h1>
+        </section>
+
+        <section class="tabla-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Cédula</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Celular</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cliente : ${clientes}">
+                        <td th:text="${cliente.cedula}"></td>
+                        <td th:text="${cliente.nombre}"></td>
+                        <td th:text="${cliente.correo}"></td>
+                        <td th:text="${cliente.celular}"></td>
+                        <td th:text="${cliente.rol}"></td>
+                        <td class="acciones">
+                            <a th:href="@{/cliente/editar?cedula={cedula}(cedula=${cliente.cedula})}" class="btn-edit">
+                                <i class="fas fa-edit"></i> Editar
+                            </a>
+                            <form th:action="@{/cliente/eliminar/{cedula}(cedula=${cliente.cedula})}" method="post" class="form-eliminar">
+                                <button type="submit" class="btn-delete">
+                                    <i class="fas fa-trash"></i> Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script type="module" src="../js/main.js"></script>
+</body>
+</html>

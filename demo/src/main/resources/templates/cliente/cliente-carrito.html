@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cliente.css}">
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a th:href="@{/cliente/cliente-mascotas}">Mis Mascotas</a></li>
+                <li><a th:href="@{/cliente/cliente-citas}">Apartar Cita</a></li>
+                <li><a th:href="@{/cliente/cliente-recetas}">Mis Recetas</a></li>
+                <li><a th:href="@{/cliente/cliente-tratamientos}">Mis Tratamientos</a></li>
+                <li><a th:href="@{/cliente/cliente-tienda}">Tienda</a></li>
+                <li><a th:href="@{/cliente/cliente-carrito}">Carrito</a></li>
+                <li><a th:href="@{/cliente/cliente-perfil}">Perfil</a></li>
+                <li><a th:href="@{/logout}" id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="carrito-container">
+        <h1>Carrito de Compras</h1>
+        <div class="carrito-items">
+            <div class="carrito-item" th:each="item : ${carrito.items}">
+                <h3 th:text="${item.producto.nombre}"></h3>
+                <p><strong>Precio:</strong> $<span th:text="${item.producto.precio}"></span></p>
+                <p><strong>Cantidad:</strong> <span th:text="${item.cantidad}"></span></p>
+                <button class="btn btn-remove" th:onclick="|eliminarDelCarrito('${item.producto.id}')|">Eliminar</button>
+            </div>
+        </div>
+        <h2 id="total">Total: $<span th:text="${carrito.total}"></span></h2>
+        <button id="btnPagar" class="btn">Finalizar Compra</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+    </footer>
+
+    <script th:src="@{/js/cliente-carrito.js}"></script>
+</body>
+</html>

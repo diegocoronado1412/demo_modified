@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetas Médicas</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/veterinario.css">
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="../../images/logo.png" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a href="panel.html" class="active">Dashboard</a></li>
+                <li><a href="veterinario-citas.html">Citas</a></li>
+                <li><a href="veterinario-pacientes.html">Pacientes</a></li>
+                <li><a href="veterinario-tratamientos.html">Tratamientos</a></li>
+                <li><a href="veterinario-recetas.html">Recetas</a></li>
+                <li><a href="veterinario-perfil.html">Perfil</a></li>
+                <li><a href="../../index.html" id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="panel-veterinario">
+        <h1>Recetas Médicas</h1>
+        <p>Asigna recetas médicas a los pacientes registrados.</p>
+
+        <button class="btn" onclick="mostrarFormularioReceta()">Crear Nueva Receta</button>
+
+        <div id="formularioReceta" class="form-container" style="display: none;">
+            <h2>Nueva Receta Médica</h2>
+            <form id="formReceta" class="form-receta">
+                <div class="form-group">
+                    <label for="paciente">Paciente:</label>
+                    <select id="paciente" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="medicamento">Medicamento:</label>
+                    <input type="text" id="medicamento" required placeholder="Ej: Antibiótico">
+                </div>
+
+                <div class="form-group">
+                    <label for="indicaciones">Indicaciones:</label>
+                    <textarea id="indicaciones" required placeholder="Ej: Administrar 2 veces al día por 7 días"></textarea>
+                </div>
+
+                <button type="submit" class="btn">Guardar Receta</button>
+                <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">Cancelar</button>
+            </form>
+        </div>
+
+        <h2>Recetas Registradas</h2>
+        <div id="recetas-container" class="recetas-grid"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="module" src="../../js/auth.js"></script>
+    <script type="module" src="../../js/veterinario-recetas.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Vibra Animal</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("Inicio cargado correctamente");
+        console.log("Enlace Servicios: ", document.querySelector('a[href="/servicios"]'));
+        console.log("Enlace Contacto: ", document.querySelector('a[href="/contacto"]'));
+        console.log("Enlace Login: ", document.querySelector('a[href="/login"]'));
+        console.log("Enlace Registro: ", document.querySelector('a[href="/registro"]'));
+    });
+</script>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/servicios">Servicios</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+                <li><a href="/login" id="loginBtn">Iniciar Sesión</a></li>
+                <li><a href="/registro" id="registerBtn">Registrarse</a></li>
+                <li id="tiendaNav" style="display: none;"><a th:href="@{/cliente/tienda}">Tienda</a></li>
+                <li id="recetasNav" style="display: none;"><a th:href="@{/veterinario/recetas}">Recetas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Iniciar Sesión</h1>
+        </section>
+
+        <section class="login-form">
+            <h2>Acceder a tu cuenta</h2>
+            <form id="loginForm">
+              <div class="form-group">
+                  <label for="cedula">Cédula:</label>
+                  <input type="text" id="cedula" name="cedula" required>
+              </div>
+          
+              <div class="form-group">
+                  <label for="password">Contraseña:</label> <!-- Claramente corregido aquí -->
+                  <input type="password" id="password" name="password" required>
+              </div>
+          
+              <button type="submit" class="btn">Iniciar Sesión</button>
+          </form>
+          
+            <p class="form-footer">¿No tienes una cuenta? <a th:href="@{/registro}">Regístrate aquí</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Contenido del footer -->
+    </footer>
+
+    <!-- Usamos Thymeleaf para que las rutas se resuelvan correctamente -->
+    <script type="module" th:src="@{/js/main.js}"></script>
+    <script type="module" th:src="@{/js/login.js}"></script>
+</body>
+<footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <p>Email: info@vibraanimal.com</p>
+        <p>Teléfono: (123) 456-7890</p>
+        <p>Dirección: Calle Principal #123, Ciudad</p>
+      </div>
+      <div class="footer-section">
+        <ul>
+          <li><a th:href="@{/}">Inicio</a></li>
+          <li><a th:href="@{/servicios}">Servicios</a></li>
+          <li><a th:href="@{/contacto}">Contacto</a></li>
+          <li><a th:href="@{/login}">Área de clientes</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Síguenos</h3>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  
+</html>

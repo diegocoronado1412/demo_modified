@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibra Animal - Clínica Veterinaria Especializada</title>
+  <!-- Estilos principales -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/css/index.css}" />
+  <!-- Iconos de Font Awesome -->
+  <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- Encabezado con navegación -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal" />
+      </div>
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/servicios">Servicios</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+        <li><a href="/login" id="loginBtn">Iniciar Sesión</a></li>
+        <li><a href="/registro" id="registerBtn">Registrarse</a></li>
+        <li id="tiendaNav" style="display: none;">
+          <a th:href="@{/cliente/tienda}">Tienda</a>
+        </li>
+        <li id="recetasNav" style="display: none;">
+          <a th:href="@{/veterinario/recetas}">Recetas</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Script para verificar enlaces al cargar -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      console.log("Inicio cargado correctamente");
+      console.log("Enlace Servicios: ", document.querySelector('a[href="/servicios"]'));
+      console.log("Enlace Contacto: ", document.querySelector('a[href="/contacto"]'));
+      console.log("Enlace Login: ", document.querySelector('a[href="/login"]'));
+      console.log("Enlace Registro: ", document.querySelector('a[href="/registro"]'));
+    });
+  </script>
+
+  <!-- Contenido principal -->
+  <main>
+    <!-- Sección Hero -->
+    <section class="hero">
+      <h1>Bienvenidos a Vibra Animal</h1>
+      <div class="hero-subtext">
+        <p>Cuidado especializado para gatos y perros hospitalizados</p>
+        <a th:href="@{/contacto}" class="btn">Reservar Consulta</a>
+      </div>
+      <img
+        th:src="@{/images/hero-image.jpg}"
+        alt="Veterinario cuidando a un perro"
+        class="hero-image"
+      />
+    </section>
+
+    <!-- Sección Servicios -->
+    <section class="servicios">
+      <h2>Nuestros Servicios Especializados</h2>
+      <div class="servicios-grid">
+        <div class="servicio-card">
+          <img
+            th:src="@{/images/hospitalizacion.jpg}"
+            alt="Área de hospitalización"
+            class="servicio-imagen"
+          />
+          <h3>Hospitalización</h3>
+          <p>Cuidados intensivos 24/7 para tu mascota</p>
+          <p class="precio">Desde $100.000cop/día</p>
+        </div>
+        <div class="servicio-card">
+          <img
+            th:src="@{/images/tratamientos.jpg}"
+            alt="Veterinario aplicando tratamiento"
+            class="servicio-imagen"
+          />
+          <h3>Tratamientos Especializados</h3>
+          <p>Terapias y medicamentos adaptados a cada paciente</p>
+          <p class="precio">Precios variables</p>
+        </div>
+        <div class="servicio-card">
+          <img
+            th:src="@{/images/monitoreo.jpg}"
+            alt="Monitor de signos vitales"
+            class="servicio-imagen"
+          />
+          <h3>Monitoreo Constante</h3>
+          <p>Seguimiento detallado del progreso de tu mascota</p>
+          <p class="precio">Incluido en hospitalización</p>
+        </div>
+      </div>
+      <a th:href="@{/servicios}" class="btn">Ver todos los servicios</a>
+    </section>
+
+    <!-- Sección Sobre Vibra Animal -->
+    <section class="about-us">
+      <h2>Sobre Vibra Animal</h2>
+      <p>
+        Somos una clínica veterinaria especializada en la hospitalización y
+        cuidado intensivo de gatos y perros. Nuestro equipo de veterinarios
+        altamente capacitados está disponible las 24 horas para asegurar la
+        mejor atención para tu mascota.
+      </p>
+      <img
+        th:src="@{/images/equipo.jpg}"
+        alt="Equipo de Vibra Animal"
+        class="about-us-image"
+      />
+    </section>
+
+    <!-- Sección de CTA -->
+    <section class="cta">
+      <h2>¿Tu mascota necesita atención especializada?</h2>
+      <p>No esperes más. Contáctanos ahora y daremos a tu compañero el cuidado que merece.</p>
+      <a th:href="@{/contacto}" class="btn">Contactar ahora</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <p>Email: info@vibraanimal.com</p>
+        <p>Teléfono: (123) 456-7890</p>
+        <p>Dirección: Calle Principal #123, Ciudad</p>
+      </div>
+      <div class="footer-section">
+        <h3>Enlaces rápidos</h3>
+        <ul>
+          <li><a th:href="@{/servicios}">Servicios</a></li>
+          <li><a th:href="@{/contacto}">Contacto</a></li>
+          <li><a th:href="@{/login}">Área de clientes</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Síguenos</h3>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts finales -->
+  <script th:src="@{/js/main.js}"></script>
+  <script type="module" th:src="@{/js/auth.js}"></script>
+</body>
+</html>

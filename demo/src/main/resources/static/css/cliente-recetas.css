@@ -1,0 +1,57 @@
+.panel-cliente {
+    padding: 2rem;
+    margin-top: 80px;
+  }
+  
+  h1 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .recetas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .receta-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .receta-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .receta-card h3 {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .receta-card p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .btn-comprar {
+    display: block;
+    padding: 0.75rem;
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-comprar:hover {
+    background: var(--primary-dark);
+  }
+  

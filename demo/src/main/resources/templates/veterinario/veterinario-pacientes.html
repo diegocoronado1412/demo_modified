@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacientes</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/veterinario.css">
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="../../images/logo.png" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a href="panel.html" class="active">Dashboard</a></li>
+                <li><a href="veterinario-citas.html">Citas</a></li>
+                <li><a href="veterinario-pacientes.html">Pacientes</a></li>
+                <li><a href="veterinario-tratamientos.html">Tratamientos</a></li>
+                <li><a href="veterinario-recetas.html">Recetas</a></li>
+                <li><a href="veterinario-perfil.html">Perfil</a></li>
+                <li><a href="../../index.html" id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="panel-veterinario">
+        <h1>Pacientes</h1>
+        <p>Aquí puedes ver la información de las mascotas registradas por los clientes.</p>
+
+        <div id="pacientes-container" class="pacientes-grid"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+    </footer>
+
+    <script type="module" src="../../js/auth.js"></script>
+    <script type="module" src="../../js/veterinario-pacientes.js"></script>
+</body>
+</html>

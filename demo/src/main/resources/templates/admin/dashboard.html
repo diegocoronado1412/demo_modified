@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel Administrativo - Vibra Animal</title>
+  <!-- CSS principal de tu proyecto -->
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <!-- CSS específico para admin/dashboard -->
+  <link rel="stylesheet" th:href="@{/css/admin.css}" />
+  <!-- FontAwesome (iconos) -->
+  <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal" class="logo-sidebar"/>
+      <h2>Vibra Animal</h2>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a th:href="@{/admin/dashboard}" class="active">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/gestion-veterinarios}">
+          <i class="fas fa-user-md"></i>
+          <span>Veterinarios</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/gestion-mascotas}">
+          <i class="fas fa-paw"></i>
+          <span>Mascotas</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/gestion-tratamientos}">
+          <i class="fas fa-stethoscope"></i>
+          <span>Tratamientos</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/gestion-productos}">
+          <i class="fas fa-boxes"></i>
+          <span>Productos</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/gestion-usuarios}">
+          <i class="fas fa-users"></i>
+          <span>Usuarios</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/admin/configuracion}">
+          <i class="fas fa-cog"></i>
+          <span>Configuración</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/logout}" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Salir</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <h1>Panel de Control (Admin)</h1>
+      <div class="user-info">
+        <p>Bienvenido, <span id="adminName">Administrador</span></p>
+      </div>
+    </header>
+
+    <main>
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <i class="fas fa-paw"></i>
+          <div class="stat-info">
+            <h3>Mascotas en Tratamiento</h3>
+            <p id="mascotasTratamiento">0</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-user-md"></i>
+          <div class="stat-info">
+            <h3>Veterinarios Activos</h3>
+            <p id="veterinariosActivos">0</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-pills"></i>
+          <div class="stat-info">
+            <h3>Tratamientos del Mes</h3>
+            <p id="tratamientosMes">0</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-dollar-sign"></i>
+          <div class="stat-info">
+            <h3>Ingresos del Mes</h3>
+            <p id="ingresosMes">$0</p>
+          </div>
+        </div>
+      </div>
+
+      <section>
+        <h2>Últimos Tratamientos</h2>
+        <table id="ultimosTratamientos">
+          <thead>
+            <tr>
+              <th>Mascota</th>
+              <th>Veterinario</th>
+              <th>Medicamento</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Se rellena dinámicamente con JS -->
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Medicamentos con Bajo Stock</h2>
+        <table id="medicamentosBajos">
+          <thead>
+            <tr>
+              <th>Medicamento</th>
+              <th>Disponible</th>
+              <th>Stock Mínimo</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Se rellena dinámicamente con JS -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" th:src="@{/js/auth.js}"></script>
+  <script type="module" th:src="@{/js/admin.js}"></script>
+</body>
+</html>

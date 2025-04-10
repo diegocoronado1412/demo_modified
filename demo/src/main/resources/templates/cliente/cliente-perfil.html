@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel del Cliente</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cliente.css}">
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a th:href="@{/cliente/cliente-mascotas}">Mis Mascotas</a></li>
+                <li><a th:href="@{/cliente/cliente-citas}">Apartar Cita</a></li>
+                <li><a th:href="@{/cliente/cliente-recetas}">Mis Recetas</a></li>
+                <li><a th:href="@{/cliente/cliente-tratamientos}">Mis Tratamientos</a></li>
+                <li><a th:href="@{/cliente/cliente-tienda}">Tienda</a></li>
+                <li><a th:href="@{/cliente/cliente-carrito}">Carrito</a></li>
+                <li><a th:href="@{/cliente/cliente-perfil}">Perfil</a></li>
+                <li><a th:href="@{/logout}" id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="perfil-container">
+        <h1>Perfil de Usuario</h1>
+
+        <div class="perfil-info">
+            <label for="fotoPerfil">Foto de Perfil:</label>
+            <input type="file" id="fotoPerfil" accept="image/*">
+            <img id="previewFoto" th:src="@{/images/default-user.png}" alt="Foto de perfil">
+
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" th:value="${usuario.nombre}">
+
+            <label for="cedula">Cédula:</label>
+            <input type="text" id="cedula" th:value="${usuario.cedula}" disabled>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" th:value="${usuario.email}">
+
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" th:value="${usuario.telefono}">
+
+            <label for="password">Nueva Contraseña:</label>
+            <input type="password" id="password">
+
+            <button id="guardarPerfil" class="btn">Guardar Cambios</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+    </footer>
+
+    <script th:src="@{/js/cliente-perfil.js}"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Mascotas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cliente.css}">
+    <link rel="stylesheet" th:href="@{/css/lista.css}">
+    <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal">
+            </div>
+            <ul>
+                <li><a th:href="@{/cliente/cliente-mascotas}">Mis Mascotas</a></li>
+                <li><a th:href="@{/cliente/cliente-citas}">Apartar Cita</a></li>
+                <li><a th:href="@{/cliente/cliente-recetas}">Mis Recetas</a></li>
+                <li><a th:href="@{/cliente/cliente-tratamientos}">Mis Tratamientos</a></li>
+                <li><a th:href="@{/cliente/cliente-tienda}">Tienda</a></li>
+                <li><a th:href="@{/cliente/cliente-carrito}">Carrito</a></li>
+                <li><a th:href="@{/cliente/cliente-perfil}">Perfil</a></li>
+                <li><a th:href="@{/logout}" id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="panel-cliente">
+        <h1>Mis Mascotas</h1>
+        <h2>Mascotas Registradas</h2>
+        <section class="tabla-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Especie</th>
+                        <th>Raza</th>
+                        <th>Edad</th>
+                        <th>Peso</th>
+                        <th>Enfermedad</th>
+                        <th>Foto</th>
+                        <th>Dueño</th>
+                    </tr>
+                </thead>
+                <tbody id="mascotas-container">
+                    <!-- Aquí se insertan las mascotas dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@vibraanimal.com</p>
+                <p>Teléfono: (123) 456-7890</p>
+                <p>Dirección: Calle Principal #123, Ciudad</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces rápidos</h3>
+                <ul>
+                    <li><a th:href="@{/servicios}">Servicios</a></li>
+                    <li><a th:href="@{/contacto}">Contacto</a></li>
+                    <li><a th:href="@{/login}">Área de clientes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script type="module" th:src="@{/js/cliente-mascotas.js}"></script>
+</body>
+</html>

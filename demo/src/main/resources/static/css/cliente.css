@@ -1,0 +1,239 @@
+/*************************************************************
+ * VARIABLES Y RESETEO BÁSICO
+ *************************************************************/
+ :root {
+  --sidebar-bg: #2e7d32;       /* Verde oscuro para la barra lateral */
+  --sidebar-hover-bg: #388e3c; /* Hover en el menú */
+  --text-light: #ffffff;       /* Texto claro */
+  --bg-light: #f5f5f5;         /* Fondo claro para el contenido */
+  --gray-border: #ccc;         /* Borde gris */
+  --gray-text: #666;           /* Texto gris */
+  --card-bg: #ffffff;          /* Fondo blanco para tarjetas/tablas */
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+/*************************************************************
+ * LAYOUT GENERAL
+ *************************************************************/
+body {
+  background-color: var(--bg-light);
+  color: var(--gray-text);
+}
+
+/*************************************************************
+ * SIDEBAR
+ *************************************************************/
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100vh;
+  background-color: var(--sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-sidebar {
+  height: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar-header h2 {
+  color: var(--text-light);
+  font-size: 1.2rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.sidebar-menu li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-menu li:last-child {
+  border-bottom: none;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  transition: background-color var(--transition-speed);
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li a.active {
+  background-color: var(--sidebar-hover-bg);
+}
+
+/* Ícono y texto dentro del link del menú */
+.sidebar-menu li a i {
+  font-size: 1.2rem;
+}
+
+/*************************************************************
+ * MAIN CONTENT (Contenido principal)
+ *************************************************************/
+.main-content {
+  margin-left: 240px; /* Deja espacio para la sidebar */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/*************************************************************
+ * HEADER DEL CONTENIDO
+ *************************************************************/
+.main-content header {
+  background-color: #fff;
+  border-bottom: 1px solid var(--gray-border);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-content header h1 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.user-info p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--gray-text);
+}
+
+/*************************************************************
+ * SECCIÓN PRINCIPAL
+ *************************************************************/
+.main-content main {
+  padding: 1.5rem;
+}
+
+/*************************************************************
+ * TARJETAS DE ESTADÍSTICAS
+ *************************************************************/
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--gray-border);
+  box-shadow: 0 2px 4px var(--card-shadow);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px var(--card-shadow);
+}
+
+.stat-card i {
+  font-size: 2rem;
+  color: #2e7d32; /* Un verde un poco más oscuro para resaltar el ícono */
+  background: rgba(46, 125, 50, 0.15);
+  padding: 0.75rem;
+  border-radius: 50%;
+}
+
+.stat-info h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.stat-info p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #444;
+}
+
+/*************************************************************
+ * TABLAS
+ *************************************************************/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 4px var(--card-shadow);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+table thead {
+  background-color: #2e7d32;
+  color: #fff;
+}
+
+table th, table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--gray-border);
+}
+
+table th {
+  text-align: left;
+  font-weight: normal;
+}
+
+table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/*************************************************************
+ * RESPONSIVO
+ *************************************************************/
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    margin-left: 200px;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+/* Si el header dentro de .main-content está fijo o se superpone, añade un padding-top */
+.main-content {
+  margin-left: 240px; /* Asegúrate de que coincide con el ancho de tu sidebar */
+  padding: 20px;
+  padding-top: 100px; /* Ajusta este valor (por ejemplo, 100px) para que el contenido no quede tapado */
+  background-color: #f9f9f9; /* Fondo claro para contraste */
+}

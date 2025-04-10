@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel del Cliente - Vibra Animal</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/css/cliente.css}" />
+  <link rel="stylesheet" th:href="@{/css/panel.css}" />
+  <script src="https://kit.fontawesome.com/5f8f3370fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img th:src="@{/images/logo.png}" alt="Logo Vibra Animal" class="logo-sidebar"/>
+      <h2>Vibra Animal</h2>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a th:href="@{/cliente/panel}" class="active">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/cliente/cliente-mascotas}">
+          <i class="fas fa-paw"></i>
+          <span>Mis Mascotas</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/cliente/cliente-citas}">
+          <i class="fas fa-calendar-check"></i>
+          <span>Apartar Cita</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/cliente/cliente-recetas}">
+          <i class="fas fa-pills"></i>
+          <span>Mis Recetas</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/cliente/cliente-tratamientos}">
+          <i class="fas fa-stethoscope"></i>
+          <span>Mis Tratamientos</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/cliente/cliente-tienda}">
+          <i class="fas fa-store"></i>
+          <span>Tienda</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/cliente/cliente-carrito}">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Carrito</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/cliente/cliente-perfil}">
+          <i class="fas fa-user"></i>
+          <span>Perfil</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/logout}" class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Salir</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <h1>Panel de Cliente</h1>
+      <div class="user-info">
+        <p>Bienvenido, <span id="clienteNombre">Cliente</span></p>
+      </div>
+    </header>
+
+    <main>
+      <p>Desde aquí puedes gestionar tus citas, recetas y compras.</p>
+
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <i class="fas fa-calendar-check"></i>
+          <div class="stat-info">
+            <h3>Próximas Citas</h3>
+            <p id="citasCliente">0</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-pills"></i>
+          <div class="stat-info">
+            <h3>Recetas Activas</h3>
+            <p id="recetasCliente">0</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-shopping-cart"></i>
+          <div class="stat-info">
+            <h3>Productos en Carrito</h3>
+            <p id="carritoCliente">0</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Vibra Animal. Todos los derechos reservados.</p>
+  </footer>
+
+  <script type="module" th:src="@{/js/login.js}"></script>
+  <script type="module" th:src="@{/js/cliente.js}"></script>
+</body>
+</html>
