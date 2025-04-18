@@ -29,13 +29,11 @@ public class AdministradorServiceImpl implements AdministradorService {
 
     @Override
     public Administrador obtenerAdministradorPorUsuario(String usuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerAdministradorPorUsuario'");
+        return administradorRepository.findByUsuario(usuario);
     }
 
     @Override
-    public void eliminarAdministrador(String usuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarAdministrador'");
+    public void eliminarAdministrador(Long id) {
+        administradorRepository.deleteById(id);
     }
 }

@@ -9,5 +9,5 @@ public interface AdministradorService {
     List<Administrador> obtenerTodosLosAdministradores();
     Administrador agregarAdministrador(Administrador administrador);
     Administrador actualizarAdministrador(Administrador administrador);
-    void eliminarAdministrador(String usuario);
+    void eliminarAdministrador(Long id);
 }
