@@ -5,9 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.entidad.Cliente;
 import com.example.demo.repositorio.ClienteRepository;
+import com.example.demo.repositorio.MascotaRepository;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
+
+    @Autowired
+    private MascotaService mascotaService;
 
     @Autowired
     private ClienteRepository clienteRepository;
@@ -28,35 +32,21 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente agregarCliente(Cliente cliente) {
-        return clienteRepository.save(cliente);
+    public void agregarCliente(Cliente cliente) {
+        clienteRepository.save(cliente);
     }
 
     @Override
-    public Cliente actualizarCliente(Cliente clienteActualizado) {
-        Cliente cliente = clienteRepository.findByCedula(clienteActualizado.getCedula());
-        if (cliente == null) {
+    public void actualizarCliente(Cliente clienteActualizado) {
+        if (clienteActualizado.getId() == null || !clienteRepository.existsById(clienteActualizado.getId())) {
             throw new RuntimeException("Cliente no encontrado");
         }
-        cliente.setNombre(clienteActualizado.getNombre());
-        cliente.setCorreo(clienteActualizado.getCorreo());
-        cliente.setCelular(clienteActualizado.getCelular());
-
-        if (clienteActualizado.getContraseña() != null && !clienteActualizado.getContraseña().isEmpty()) {
-            cliente.setContraseña(clienteActualizado.getContraseña());
-        }
-        
-        return clienteRepository.save(cliente);  // Asegura guardar cambios
+        clienteRepository.save(clienteActualizado);
     }
 
     @Override
-    public void eliminarCliente(String cedula) {
-        Cliente cliente = clienteRepository.findByCedula(cedula);
-        if (cliente != null) {
-            clienteRepository.delete(cliente);
-        } else {
-            throw new RuntimeException("Cliente no encontrado");
-        }
+    public void eliminarCliente(Long id) {
+        clienteRepository.deleteById(id);
     }
 
     @Override

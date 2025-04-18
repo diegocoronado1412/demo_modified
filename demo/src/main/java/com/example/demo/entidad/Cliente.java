@@ -1,16 +1,21 @@
 package com.example.demo.entidad;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // <<<<<< agregado, clave primaria autogenerada
+    private Long id; // Clave primaria autogenerada
 
     private String cedula;     // Identificador lógico
     private String nombre;
@@ -18,6 +23,11 @@ public class Cliente {
     private String celular;
     private String contraseña;
     private String rol;
+
+    // Relación OneToMany: Un cliente puede tener muchas mascotas
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Mascota> mascotas;
 
     public Cliente() {
     }
@@ -43,6 +53,7 @@ public class Cliente {
     public String getCedula() {
         return cedula;
     }
+
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
@@ -50,6 +61,7 @@ public class Cliente {
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -57,6 +69,7 @@ public class Cliente {
     public String getCorreo() {
         return correo;
     }
+
     public void setCorreo(String correo) {
         this.correo = correo;
     }
@@ -64,6 +77,7 @@ public class Cliente {
     public String getCelular() {
         return celular;
     }
+
     public void setCelular(String celular) {
         this.celular = celular;
     }
@@ -71,6 +85,7 @@ public class Cliente {
     public String getContraseña() {
         return contraseña;
     }
+
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
@@ -78,7 +93,16 @@ public class Cliente {
     public String getRol() {
         return rol;
     }
+
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public List<Mascota> getMascotas() {
+        return mascotas;
+    }
+
+    public void setMascotas(List<Mascota> mascotas) {
+        this.mascotas = mascotas;
     }
 }

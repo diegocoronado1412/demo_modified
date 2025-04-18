@@ -1,6 +1,8 @@
 package com.example.demo.servicio;
 
 import java.util.List;
+
+import com.example.demo.entidad.Cliente;
 import com.example.demo.entidad.Mascota;
 
 public interface MascotaService {

@@ -1,6 +1,8 @@
 package com.example.demo.entidad;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.CascadeType;
@@ -8,8 +10,9 @@ import java.util.List;
 
 @Entity
 public class Administrador {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;            
     private String usuario;     // Se usará como identificador, por ejemplo "123456789"
     private String contraseña;  // Contraseña de administrador
     private String rol;         // Debe ser "admin" en este caso
@@ -69,5 +72,13 @@ public class Administrador {
 
     public void setVeterinarios(List<Veterinario> veterinarios) {
         this.veterinarios = veterinarios;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

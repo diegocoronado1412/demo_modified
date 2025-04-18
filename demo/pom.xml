@@ -68,6 +68,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.3</version> <!-- ✅ Puedes actualizar esta versión si lo deseas -->
+        </dependency>
+        
     </dependencies>
 
     <build>
@@ -80,4 +87,3 @@
     </build>
 
 </project>
-

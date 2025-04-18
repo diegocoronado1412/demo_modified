@@ -9,14 +9,18 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@Controller
-@RequestMapping("/mascota")
+@RestController
+@RequestMapping("/api/mascota")
+@CrossOrigin(origins = "http://localhost:4200")
 public class MascotaController {
 
     @Autowired
@@ -25,110 +29,54 @@ public class MascotaController {
     @Autowired
     private ClienteService clienteService;
 
-    // Ruta donde se guardarán las imágenes (en desarrollo).
-    private static final String UPLOADED_FOLDER = "src/main/resources/static/images/mascotas/";
-
-    @GetMapping("/crear")
-    public String mostrarFormularioCrear(Model model) {
-        model.addAttribute("mascota", new Mascota());
-        model.addAttribute("clientes", clienteService.obtenerTodosLosClientes());
-        return "mascota/crear";
-    }
-
     @PostMapping("/crear")
-    public String guardarMascota(@ModelAttribute Mascota mascota,
-                                 @RequestParam("archivo") MultipartFile archivo,
-                                 @RequestParam("clienteCedula") String clienteCedula) {
-        // Procesar el archivo
-        if (!archivo.isEmpty()) {
-            try {
-                File dir = new File(UPLOADED_FOLDER);
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-                // Usa el nombre original en lugar de concatenar timestamp
-                String filename = archivo.getOriginalFilename();
-                Path path = Paths.get(UPLOADED_FOLDER + filename);
-                Files.write(path, archivo.getBytes());
-                mascota.setFoto(filename);
-                System.out.println("Imagen guardada en: " + path.toAbsolutePath());
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "redirect:/mascota/crear?error=imagen";
-            }
-        }
-        // Asociar la mascota al cliente
+    public void guardarMascota(@RequestBody Mascota mascota, @RequestParam String clienteCedula) {
         Cliente cliente = clienteService.obtenerClientePorCedula(clienteCedula);
         if (cliente == null) {
-            return "redirect:/mascota/crear?error=cliente";
+            throw new RuntimeException("El cliente con cedula " + clienteCedula + " no existe.");
         }
         mascota.setCliente(cliente);
         mascotaService.guardarMascota(mascota);
-        return "redirect:/mascota/listar";
     }
 
     @GetMapping("/listar")
-    public String listarMascotas(Model model) {
-        model.addAttribute("mascotas", mascotaService.obtenerTodasLasMascotas());
-        return "mascota/listar";
+    public List<Mascota> listarMascotas() {
+        return mascotaService.obtenerTodasLasMascotas();
     }
 
-    @GetMapping("/editar/{id}")
-    public String editarMascota(@PathVariable Long id, Model model) {
-        Mascota mascota = mascotaService.obtenerMascotaPorId(id);
-        model.addAttribute("mascota", mascota);
-        model.addAttribute("clientes", clienteService.obtenerTodosLosClientes());
-        return "mascota/editar";
-    }
-
-    @PostMapping("/actualizar/{id}")
-    public String actualizarMascota(@ModelAttribute Mascota mascota,
-                                    @RequestParam("clienteCedula") String clienteCedula,
-                                    @RequestParam(value = "archivo", required = false) MultipartFile archivo) {
-
-        if (archivo != null && !archivo.isEmpty()) {
-            try {
-                File dir = new File(UPLOADED_FOLDER);
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-                // Usa el nombre original en la edición también
-                String filename = archivo.getOriginalFilename();
-                Path path = Paths.get(UPLOADED_FOLDER + filename);
-                Files.write(path, archivo.getBytes());
-                mascota.setFoto(filename);
-                System.out.println("Imagen actualizada en: " + path.toAbsolutePath());
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "redirect:/mascota/editar/" + mascota.getId() + "?error=imagen";
-            }
+    @PutMapping("/actualizar/{id}")
+    public void actualizarMascota(@RequestBody Mascota mascota, @PathVariable Long id) {
+        try {
+            mascota.setId(id); // aseguramos el ID
+            mascotaService.actualizarMascota(mascota);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al actualizar la mascota con ID: " + id);
         }
-
-        // Asociar la mascota al cliente
-        Cliente cliente = clienteService.obtenerClientePorCedula(clienteCedula);
-        if (cliente == null) {
-            return "redirect:/mascota/editar/" + mascota.getId() + "?error=cliente";
-        }
-        mascota.setCliente(cliente);
-        mascotaService.actualizarMascota(mascota);
-        return "redirect:/mascota/listar";
     }
 
-    @PostMapping("/eliminar/{id}")
-    public String eliminarMascota(@PathVariable Long id) {
+    @DeleteMapping("/eliminar/{id}")
+    public void eliminarMascota(@PathVariable Long id) {
         mascotaService.eliminarMascota(id);
-        return "redirect:/mascota/listar";
     }
 
     @GetMapping("/detalle/{id}")
-    public String verDetalleMascota(@PathVariable Long id, Model model) {
+    public Mascota verDetalleMascota(@PathVariable("id") Long id) {
         try {
             Mascota mascota = mascotaService.obtenerMascotaPorId(id);
-            model.addAttribute("mascota", mascota);
-            return "mascota/detalle"; // Vista de detalle
+            return mascota;
         } catch (RuntimeException e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            return "error"; // O una vista de error personalizada
+            throw new RuntimeException("Mascota no encontrada con ID: " + id);
         }
     }
+
+    @GetMapping("/obtenerMascotasPorCliente/{cedula}")
+    public List<Mascota> obtenerMascotasPorCliente(@PathVariable String cedula) {
+        Cliente cliente = clienteService.obtenerClientePorCedula(cedula);
+        if (cliente == null) {
+            throw new RuntimeException("Cliente no encontrado con cédula: " + cedula);
+        }
+        return mascotaService.obtenerMascotasPorCliente(cedula);
+    }
+
 }

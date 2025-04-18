@@ -15,6 +15,14 @@ public class Droga {
     private int unidadesDisponibles;
     private int unidadesVendidas;
 
+    public Droga(String nombre, double preciocompra, double precioventa, int unidadesdisponibles, int unidadesvendidas) {
+        this.nombre = nombre;
+        this.precioCompra = preciocompra;
+        this.precioVenta = precioventa;
+        this.unidadesDisponibles = unidadesdisponibles;
+        this.unidadesVendidas = unidadesvendidas;
+    }
+
     // Método para actualizar unidades
     public void actualizarUnidades(int cantidad) {
         this.unidadesDisponibles -= cantidad;

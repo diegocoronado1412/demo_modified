@@ -1,4 +1,4 @@
-package com.example.demo.controlador;
+package com.example.demo.error;
 
 public class NotFoundException extends RuntimeException {
     private String mensaje;

@@ -7,47 +7,92 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.entidad.Cliente;
 import com.example.demo.servicio.ClienteService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/cliente")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ClienteRestController {
 
     @Autowired
     private ClienteService clienteService;
 
     // Obtener cliente por cédula
-    @GetMapping("/{cedula}")
-    public Cliente obtenerClientePorCedula(@PathVariable String cedula) {
-        Cliente cliente = clienteService.obtenerClientePorCedula(cedula);
+    @GetMapping("/{id}")
+    public Cliente obtenerClientePorId(@PathVariable Long id) {
+        Cliente cliente = clienteService.obtenerClientePorId(id);
         if (cliente == null) {
-            throw new RuntimeException("El cliente con cédula " + cedula + " no existe.");
+            throw new RuntimeException("El cliente con cédula " + id + " no existe.");
         }
         return cliente;
     }
 
     // Listar todos
-    @GetMapping
+    @GetMapping("/listar")
     public List<Cliente> obtenerTodosLosClientes() {
         return clienteService.obtenerTodosLosClientes();
     }
 
     // Registrar un nuevo cliente (JSON)
     @PostMapping("/registrar")
-    public Cliente registrarCliente(@RequestBody Cliente cliente) {
-        if (cliente.getRol() == null || cliente.getRol().isEmpty()) {
-            cliente.setRol("cliente");
-        }
-        return clienteService.agregarCliente(cliente);
+    public void registrarCliente(@RequestBody Cliente cliente) {
+        clienteService.agregarCliente(cliente);
     }
 
     // Actualizar
-    @PutMapping("/actualizar")
-    public Cliente actualizarCliente(@RequestBody Cliente cliente) {
-        return clienteService.actualizarCliente(cliente);
+    @PutMapping("/actualizar/{id}")
+    public void actualizarCliente(@RequestBody Cliente cliente) {
+        clienteService.actualizarCliente(cliente);
     }
 
     // Eliminar por cédula
-    @DeleteMapping("/eliminar/{cedula}")
-    public void eliminarCliente(@PathVariable String cedula) {
-        clienteService.eliminarCliente(cedula);
+    @DeleteMapping("/eliminar/{id}")
+    public void eliminarCliente(@PathVariable Long id) {
+        Cliente cliente = clienteService.obtenerClientePorId(id);
+        if (cliente == null) {
+            throw new RuntimeException("El cliente con cédula " + id + " no existe.");
+        }
+        clienteService.eliminarCliente(id);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

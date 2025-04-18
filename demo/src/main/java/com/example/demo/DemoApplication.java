@@ -19,16 +19,6 @@ public class DemoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Si no existe el administrador con usuario "123456789", lo crea
-        if (!administradorRepository.existsById("123456789")) {
-            Administrador admin = new Administrador();
-            admin.setUsuario("123456789");
-            admin.setContraseña("admin");
-            admin.setRol("admin");
-            administradorRepository.save(admin);
-            System.out.println("¡Administrador predeterminado creado!");
-        } else {
-            System.out.println("El administrador predeterminado ya existe.");
-        }
+        
     }
 }

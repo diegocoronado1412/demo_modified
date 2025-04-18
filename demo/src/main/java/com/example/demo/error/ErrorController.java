@@ -1,4 +1,4 @@
-package com.example.demo.controlador;
+package com.example.demo.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;

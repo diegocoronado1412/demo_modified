@@ -13,11 +13,6 @@ public class AdministradorServiceImpl implements AdministradorService {
     private AdministradorRepository administradorRepository;
 
     @Override
-    public Administrador obtenerAdministradorPorUsuario(String usuario) {
-        return administradorRepository.findById(usuario).orElse(null);
-    }
-
-    @Override
     public List<Administrador> obtenerTodosLosAdministradores() {
         return administradorRepository.findAll();
     }
@@ -33,7 +28,14 @@ public class AdministradorServiceImpl implements AdministradorService {
     }
 
     @Override
+    public Administrador obtenerAdministradorPorUsuario(String usuario) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'obtenerAdministradorPorUsuario'");
+    }
+
+    @Override
     public void eliminarAdministrador(String usuario) {
-        administradorRepository.deleteById(usuario);
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'eliminarAdministrador'");
     }
 }

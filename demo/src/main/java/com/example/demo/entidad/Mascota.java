@@ -1,5 +1,8 @@
 package com.example.demo.entidad;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,6 +32,7 @@ public class Mascota {
     private String foto;
     
     // Relación: cada mascota pertenece a un Cliente
+    @JsonIgnore 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
