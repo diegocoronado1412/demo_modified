@@ -12,32 +12,33 @@ public class Tratamiento {
 
     private Date fecha;
 
-    @ManyToOne
-    @JoinColumn(name = "droga_id")
-    private Droga droga;
+    private Long droga; // sigue siendo solo ID de la droga
 
     @ManyToOne
-    @JoinColumn(name = "mascota_id")
-    private Mascota mascota;
+    @JoinColumn(name = "mascota_id")   // CORREGIDO
+    private Mascota mascota;            // CORREGIDO
 
     @ManyToOne
-    @JoinColumn(name = "veterinario_cedula")
+    @JoinColumn(name = "veterinario_id")
     private Veterinario veterinario;
 
-    // Método para registrar tratamiento
     public void registrarTratamiento() {
         this.fecha = new Date();
     }
 
-    // Getters y Setters
+    // getters y setters normales
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
     public Date getFecha() { return fecha; }
     public void setFecha(Date fecha) { this.fecha = fecha; }
-    public Droga getDroga() { return droga; }
-    public void setDroga(Droga droga) { this.droga = droga; }
+
+    public Long getDroga() { return droga; }
+    public void setDroga(Long droga) { this.droga = droga; }
+
     public Mascota getMascota() { return mascota; }
     public void setMascota(Mascota mascota) { this.mascota = mascota; }
+
     public Veterinario getVeterinario() { return veterinario; }
     public void setVeterinario(Veterinario veterinario) { this.veterinario = veterinario; }
 }

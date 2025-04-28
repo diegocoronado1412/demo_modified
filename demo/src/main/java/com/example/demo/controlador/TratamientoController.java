@@ -1,34 +1,35 @@
 package com.example.demo.controlador;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 import com.example.demo.entidad.Tratamiento;
 import com.example.demo.servicio.TratamientoService;
 
-@Controller
-@RequestMapping("/tratamientos")
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/tratamientos")
+@CrossOrigin(origins = "*") // 🔥 Permite acceso desde Angular
 public class TratamientoController {
 
     @Autowired
     private TratamientoService tratamientoService;
 
-    @GetMapping("/{id}")
-    public String obtenerTratamientoPorId(@PathVariable Long id, Model model) {
-        model.addAttribute("tratamiento", tratamientoService.obtenerTratamientoPorId(id));
-        return "tratamiento/detalle";
+    @PostMapping
+    public Tratamiento crearTratamiento(@RequestBody Tratamiento tratamiento) {
+        return tratamientoService.agregarTratamiento(tratamiento);
     }
+    
 
     @GetMapping
-    public String obtenerTodosLosTratamientos(Model model) {
-        model.addAttribute("tratamientos", tratamientoService.obtenerTodosLosTratamientos());
-        return "tratamiento/lista";
+    public List<Tratamiento> obtenerTodosLosTratamientos() {
+        return tratamientoService.obtenerTodosLosTratamientos();
     }
 
-    @PostMapping
-    public String agregarTratamiento(@ModelAttribute Tratamiento tratamiento) {
-        tratamientoService.agregarTratamiento(tratamiento);
-        return "redirect:/tratamientos";
+    @SuppressWarnings("unchecked")
+    @GetMapping("/mascota/{idMascota}")
+    public List<Tratamiento> obtenerTratamientosPorMascota(@PathVariable Long idMascota) {
+        return (List<Tratamiento>) tratamientoService.obtenerTratamientoPorId(idMascota);
     }
 }
