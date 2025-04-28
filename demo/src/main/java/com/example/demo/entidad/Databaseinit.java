@@ -1,10 +1,9 @@
 package com.example.demo.entidad;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -20,10 +19,6 @@ import com.example.demo.repositorio.DrogaRepository;
 import com.example.demo.repositorio.MascotaRepository;
 import com.example.demo.repositorio.TratamientoRepository;
 import com.example.demo.repositorio.VeterinarioRepository;
-import com.example.demo.entidad.Cliente;
-import com.example.demo.entidad.Mascota;
-import com.example.demo.entidad.Droga;
-import com.example.demo.entidad.Veterinario;
 
 import jakarta.transaction.Transactional;
 
@@ -51,7 +46,7 @@ public class Databaseinit implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        // Nombres y apellidos comunes para generar nombres realistas
+        // Nombres y apellidos comunes
         String[] nombres = { "Juan", "María", "Carlos", "Ana", "Luis", "Laura", "Pedro", "Camila", "Jorge", "Sofía" };
         String[] apellidos = { "Gómez", "Rodríguez", "Pérez", "Martínez", "López", "Hernández", "Díaz", "Morales", "Torres", "Ramírez" };
 
@@ -64,20 +59,20 @@ public class Databaseinit implements ApplicationRunner {
             String correo = (nombre + apellido).toLowerCase() + "@gmail.com";
 
             Cliente cliente = new Cliente(
-                    "100" + i,
-                    nombreCompleto,
-                    correo,
-                    "3001234" + String.format("%03d", i),
-                    "clave" + i,
-                    "cliente");
+                "100" + i,
+                nombreCompleto,
+                correo,
+                "3001234" + String.format("%03d", i),
+                "clave" + i,
+                "cliente"
+            );
 
             clientes.add(cliente);
         }
 
-        // Guardar todos los clientes en lote
         clienteRepository.saveAll(clientes);
 
-        // Crear veterinarios
+        // Veterinarios
         if (veterinarioRepository.count() == 0) {
             List<Veterinario> veterinarios = new ArrayList<>();
 
@@ -89,7 +84,6 @@ public class Databaseinit implements ApplicationRunner {
             vet1.setFotoUrl("foto_vet1.jpg");
             vet1.setRol("veterinario");
             vet1.setNumeroAtenciones(0);
-            veterinarios.add(vet1);
 
             Veterinario vet2 = new Veterinario();
             vet2.setCedula("2002");
@@ -99,16 +93,17 @@ public class Databaseinit implements ApplicationRunner {
             vet2.setFotoUrl("foto_vet2.jpg");
             vet2.setRol("veterinario");
             vet2.setNumeroAtenciones(0);
+
+            veterinarios.add(vet1);
             veterinarios.add(vet2);
 
             veterinarioRepository.saveAll(veterinarios);
-
             System.out.println("✅ Veterinarios insertados correctamente.");
         } else {
             System.out.println("⚠️ Veterinarios ya existen en la base de datos.");
         }
 
-        // Crear 100 mascotas (2 por cliente)
+        // Mascotas
         List<Mascota> mascotas = new ArrayList<>();
         String[] especies = { "Perro", "Gato" };
         String[] razas = { "Labrador", "Siames", "Pastor Alemán", "Persa" };
@@ -133,40 +128,47 @@ public class Databaseinit implements ApplicationRunner {
             }
         }
 
-        // Cargar medicamentos desde el Excel
-        List<Droga> drogas = new ArrayList<>();
-        try {
-            String filePath = "C:\\Users\\aleja\\OneDrive\\Documentos\\WEBDIEGO\\demo_modified\\demo\\src\\main\\resources\\static\\excel\\MEDICAMENTOS_VETERINARIA.xlsx";
-            FileInputStream file = new FileInputStream(filePath);
-            Workbook workbook = new XSSFWorkbook(file);
-            Sheet sheet = workbook.getSheetAt(0);
-            int rowCount = sheet.getPhysicalNumberOfRows();
-            for (int i = 0; i < rowCount; i++) {
-                if (i == 0) continue; // Saltar encabezado
-
-                Row row = sheet.getRow(i);
-                if (row != null) {
-                    Droga droga = new Droga(
-                            row.getCell(1).getStringCellValue(), 
-                            row.getCell(3).getNumericCellValue(), 
-                            row.getCell(2).getNumericCellValue(), 
-                            (int) row.getCell(4).getNumericCellValue(), 
-                            (int) row.getCell(5).getNumericCellValue()
-                    );
-                    drogas.add(droga);
-                }
-            }
-            workbook.close();
-            file.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Guardar todas las drogas
-        drogaRepository.saveAll(drogas);
-
-        // Guardar todas las mascotas en lote
         mascotaRepository.saveAll(mascotas);
+
+        // Drogas
+        if (drogaRepository.count() == 0) {
+            List<Droga> drogas = new ArrayList<>();
+            try {
+                InputStream inputStream = getClass().getClassLoader().getResourceAsStream("static/excel/MEDICAMENTOS_VETERINARIA.xlsx");
+
+                if (inputStream == null) {
+                    System.err.println("❌ Error: No se encontró el archivo MEDICAMENTOS_VETERINARIA.xlsx en resources/static/excel/");
+                } else {
+                    Workbook workbook = new XSSFWorkbook(inputStream);
+                    Sheet sheet = workbook.getSheetAt(0);
+                    int rowCount = sheet.getPhysicalNumberOfRows();
+
+                    for (int i = 1; i < rowCount; i++) { // Empezar en 1 para saltar encabezado
+                        Row row = sheet.getRow(i);
+                        if (row != null) {
+                            Droga droga = new Droga(
+                                row.getCell(1).getStringCellValue(),
+                                row.getCell(3).getNumericCellValue(),
+                                row.getCell(2).getNumericCellValue(),
+                                (int) row.getCell(4).getNumericCellValue(),
+                                (int) row.getCell(5).getNumericCellValue()
+                            );
+                            drogas.add(droga);
+                        }
+                    }
+                    workbook.close();
+                    inputStream.close();
+
+                    drogaRepository.saveAll(drogas);
+                    System.out.println("✅ " + drogas.size() + " medicamentos cargados desde Excel.");
+                }
+            } catch (IOException e) {
+                System.err.println("❌ Error cargando medicamentos desde Excel:");
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("⚠️ Ya existen medicamentos en la base de datos.");
+        }
 
         System.out.println("✅ Datos insertados: 50 clientes, 2 veterinarios, 100 mascotas y medicamentos cargados.");
     }
