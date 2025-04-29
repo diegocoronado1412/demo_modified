@@ -1,7 +1,11 @@
 package com.example.demo.entidad;
 
-import java.util.Date;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Tratamiento {
@@ -10,28 +14,32 @@ public class Tratamiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Date fecha;
+    private java.util.Date fecha;
 
-    private Long droga; // sigue siendo solo ID de la droga
+    // Si finalmente pasas la entidad Droga en vez de sólo el id, cambia este campo:
+    // @ManyToOne
+    // @JoinColumn(name = "droga_id")
+    // private Droga droga;
+    //
+    // Por ahora mantenemos el id numérico:
+    private Long droga;
 
     @ManyToOne
-    @JoinColumn(name = "mascota_id")   // CORREGIDO
-    private Mascota mascota;            // CORREGIDO
+    @JoinColumn(name = "mascota_id")
+    private Mascota mascota;
 
     @ManyToOne
     @JoinColumn(name = "veterinario_id")
     private Veterinario veterinario;
 
-    public void registrarTratamiento() {
-        this.fecha = new Date();
-    }
+    public Tratamiento() {}
 
-    // getters y setters normales
+    // Getters y setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public Date getFecha() { return fecha; }
-    public void setFecha(Date fecha) { this.fecha = fecha; }
+    public java.util.Date getFecha() { return fecha; }
+    public void setFecha(java.util.Date fecha) { this.fecha = fecha; }
 
     public Long getDroga() { return droga; }
     public void setDroga(Long droga) { this.droga = droga; }

@@ -1,7 +1,15 @@
 package com.example.demo.entidad;
 
 import java.util.List;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Veterinario {
@@ -17,7 +25,7 @@ public class Veterinario {
     private String fotoUrl;
     private int numeroAtenciones;
     private String contraseña;
-    private String rol;  // Correctamente añadido
+    private String rol;
 
     @ManyToOne
     @JoinColumn(name = "administrador_usuario")
@@ -35,8 +43,7 @@ public class Veterinario {
         this.numeroAtenciones++;
     }
 
-    // Getters y Setters completos claramente corregidos
-
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -93,17 +100,17 @@ public class Veterinario {
         this.rol = rol;
     }
 
-    public List<Tratamiento> getTratamientos() {
-        return tratamientos;
-    }
-    public void setTratamientos(List<Tratamiento> tratamientos) {
-        this.tratamientos = tratamientos;
-    }
-
     public Administrador getAdministrador() {
         return administrador;
     }
     public void setAdministrador(Administrador administrador) {
         this.administrador = administrador;
+    }
+
+    public List<Tratamiento> getTratamientos() {
+        return tratamientos;
+    }
+    public void setTratamientos(List<Tratamiento> tratamientos) {
+        this.tratamientos = tratamientos;
     }
 }

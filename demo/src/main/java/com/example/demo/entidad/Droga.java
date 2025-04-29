@@ -15,12 +15,21 @@ public class Droga {
     private int unidadesDisponibles;
     private int unidadesVendidas;
 
-    public Droga(String nombre, double preciocompra, double precioventa, int unidadesdisponibles, int unidadesvendidas) {
+    // ←– Constructor vacío requerido por JPA
+    public Droga() {
+    }
+
+    // Constructor con parámetros
+    public Droga(String nombre,
+                 double precioCompra,
+                 double precioVenta,
+                 int unidadesDisponibles,
+                 int unidadesVendidas) {
         this.nombre = nombre;
-        this.precioCompra = preciocompra;
-        this.precioVenta = precioventa;
-        this.unidadesDisponibles = unidadesdisponibles;
-        this.unidadesVendidas = unidadesvendidas;
+        this.precioCompra = precioCompra;
+        this.precioVenta = precioVenta;
+        this.unidadesDisponibles = unidadesDisponibles;
+        this.unidadesVendidas = unidadesVendidas;
     }
 
     // Método para actualizar unidades

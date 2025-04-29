@@ -4,19 +4,11 @@ import com.example.demo.entidad.Cliente;
 import com.example.demo.entidad.Mascota;
 import com.example.demo.servicio.ClienteService;
 import com.example.demo.servicio.MascotaService;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/mascota")

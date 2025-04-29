@@ -5,13 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.entidad.Cliente;
 import com.example.demo.repositorio.ClienteRepository;
-import com.example.demo.repositorio.MascotaRepository;
 
 @Service
 public class ClienteServiceImpl implements ClienteService {
 
-    @Autowired
-    private MascotaService mascotaService;
 
     @Autowired
     private ClienteRepository clienteRepository;

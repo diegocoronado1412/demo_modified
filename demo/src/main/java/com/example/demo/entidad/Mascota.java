@@ -1,8 +1,6 @@
 package com.example.demo.entidad;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,13 +23,8 @@ public class Mascota {
     private String visitas;
     private String citas;        
     private String servicios; 
-// etc.
-
-    
-    // Campo para almacenar el nombre (o ruta) de la foto
     private String foto;
     
-    // Relación: cada mascota pertenece a un Cliente
     @JsonIgnore 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -51,77 +44,36 @@ public class Mascota {
     }
 
     // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    public String getEspecie() {
-        return especie;
-    }
-    public void setEspecie(String especie) {
-        this.especie = especie;
-    }
-    public String getRaza() {
-        return raza;
-    }
-    public void setRaza(String raza) {
-        this.raza = raza;
-    }
-    public Integer getEdad() {
-        return edad;
-    }
-    public void setEdad(Integer edad) {
-        this.edad = edad;
-    }
-    public String getFoto() {
-        return foto;
-    }
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-    public Cliente getCliente() {
-        return cliente;
-    }
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-    public String getAntecedentes() {
-        return antecedentes;
-    }
-    
-    public void setAntecedentes(String antecedentes) {
-        this.antecedentes = antecedentes;
-    }
-    
-    public String getVisitas() {
-        return visitas;
-    }
-    
-    public void setVisitas(String visitas) {
-        this.visitas = visitas;
-    }
-    
-    public String getCitas() {
-        return citas;
-    }
-    
-    public void setCitas(String citas) {
-        this.citas = citas;
-    }
-    
-    public String getServicios() {
-        return servicios;
-    }
-    
-    public void setServicios(String servicios) {
-        this.servicios = servicios;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getEspecie() { return especie; }
+    public void setEspecie(String especie) { this.especie = especie; }
+
+    public String getRaza() { return raza; }
+    public void setRaza(String raza) { this.raza = raza; }
+
+    public Integer getEdad() { return edad; }
+    public void setEdad(Integer edad) { this.edad = edad; }
+
+    public String getFoto() { return foto; }
+    public void setFoto(String foto) { this.foto = foto; }
+
+    public Cliente getCliente() { return cliente; }
+    public void setCliente(Cliente cliente) { this.cliente = cliente; }
+
+    public String getAntecedentes() { return antecedentes; }
+    public void setAntecedentes(String antecedentes) { this.antecedentes = antecedentes; }
+
+    public String getVisitas() { return visitas; }
+    public void setVisitas(String visitas) { this.visitas = visitas; }
+
+    public String getCitas() { return citas; }
+    public void setCitas(String citas) { this.citas = citas; }
+
+    public String getServicios() { return servicios; }
+    public void setServicios(String servicios) { this.servicios = servicios; }
 }

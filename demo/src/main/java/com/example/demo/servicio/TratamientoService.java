@@ -9,4 +9,5 @@ public interface TratamientoService {
     Tratamiento agregarTratamiento(Tratamiento tratamiento);
     Tratamiento actualizarTratamiento(Tratamiento tratamiento);
     void eliminarTratamiento(Long id);
+    List<Tratamiento> obtenerTratamientosPorMascota(Long idMascota);
 }

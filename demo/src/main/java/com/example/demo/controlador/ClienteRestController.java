@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.entidad.Cliente;
 import com.example.demo.servicio.ClienteService;
 
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/cliente")
