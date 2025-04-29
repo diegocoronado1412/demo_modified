@@ -3,20 +3,28 @@ package com.example.demo.controlador;
 import com.example.demo.entidad.Veterinario;
 import com.example.demo.servicio.VeterinarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/veterinario")
+@CrossOrigin(origins = "http://localhost:4200")
 public class VeterinarioController {
+
 
     @Autowired
     private VeterinarioService veterinarioService;
 
-    @GetMapping("/{cedula}")
-    public Veterinario obtenerPorCedula(@PathVariable String cedula) {
-        return veterinarioService.obtenerVeterinarioPorCedula(cedula);
+@GetMapping("/{cedula}")
+public ResponseEntity<Veterinario> obtenerPorCedula(@PathVariable String cedula) {
+    Veterinario veterinario = veterinarioService.obtenerVeterinarioPorCedula(cedula);
+    if (veterinario == null) {
+        return ResponseEntity.notFound().build();
     }
+    return ResponseEntity.ok(veterinario);
+}
+
 
     @GetMapping
     public List<Veterinario> obtenerTodos() {
