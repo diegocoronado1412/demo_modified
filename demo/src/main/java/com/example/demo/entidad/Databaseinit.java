@@ -130,6 +130,19 @@ public class Databaseinit implements ApplicationRunner {
 
         mascotaRepository.saveAll(mascotas);
 
+// Insertar administrador si no existe ninguno
+if (administradorRepository.count() == 0) {
+    Administrador admin = new Administrador();
+    admin.setUsuario("1234");
+    admin.setContraseña("admin123");
+    admin.setRol("administrador");
+
+    administradorRepository.save(admin);
+    System.out.println("✅ Administrador insertado correctamente.");
+} else {
+    System.out.println("⚠️ Administrador ya existe en la base de datos.");
+}
+
         // Drogas
         if (drogaRepository.count() == 0) {
             List<Droga> drogas = new ArrayList<>();
