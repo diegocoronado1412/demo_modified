@@ -10,6 +10,8 @@ public class Tratamiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nombre;        // ← Agregado
+    private String descripcion;   // ← Agregado
     private Date fecha;
 
     @ManyToOne
@@ -29,6 +31,12 @@ public class Tratamiento {
     // Getters y setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
     public Date getFecha() { return fecha; }
     public void setFecha(Date fecha) { this.fecha = fecha; }
