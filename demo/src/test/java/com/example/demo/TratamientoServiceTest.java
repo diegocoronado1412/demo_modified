@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -96,4 +97,25 @@ public class TratamientoServiceTest {
         assertThat(lista).isNotEmpty();
         verify(tratamientoRepository).findByMascotaId(100L);
     }
+    @Test
+void testObtenerTratamientoPorId() {
+    when(tratamientoRepository.findById(1L)).thenReturn(Optional.of(tratamiento));
+
+    Tratamiento resultado = tratamientoService.obtenerTratamientoPorId(1L);
+
+    assertThat(resultado).isNotNull();
+    assertThat(resultado.getId()).isEqualTo(1L);
+    verify(tratamientoRepository).findById(1L);
+}
+@Test
+void testEliminarTratamiento() {
+    when(tratamientoRepository.existsById(1L)).thenReturn(true);
+    doNothing().when(tratamientoRepository).deleteById(1L);
+
+    tratamientoService.eliminarTratamiento(1L);
+
+    verify(tratamientoRepository).deleteById(1L);
+}
+
+
 }

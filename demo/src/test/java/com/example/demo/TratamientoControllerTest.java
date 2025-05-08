@@ -1,12 +1,14 @@
 package com.example.demo;
 
 import com.example.demo.controlador.TratamientoController;
+import com.example.demo.entidad.Droga;
+import com.example.demo.entidad.Mascota;
 import com.example.demo.entidad.Tratamiento;
+import com.example.demo.entidad.Veterinario;
 import com.example.demo.servicio.TratamientoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -15,11 +17,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Collections;
+import java.util.Date;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith(MockitoExtension.class)
 public class TratamientoControllerTest {
@@ -38,10 +43,26 @@ public class TratamientoControllerTest {
     void setUp() {
         mockMvc = MockMvcBuilders.standaloneSetup(tratamientoController).build();
 
+        Droga droga = new Droga();
+        droga.setId(1L);
+        droga.setNombre("Antibiótico");
+
+        Mascota mascota = new Mascota();
+        mascota.setId(2L);
+        mascota.setNombre("Firulais");
+
+        Veterinario vet = new Veterinario();
+        vet.setId(3L);
+        vet.setNombre("Dra. Ana");
+
         tratamiento = new Tratamiento();
         tratamiento.setId(1L);
         tratamiento.setNombre("Vacunación");
         tratamiento.setDescripcion("Vacuna contra rabia");
+        tratamiento.setFecha(new Date());
+        tratamiento.setDroga(droga);
+        tratamiento.setMascota(mascota);
+        tratamiento.setVeterinario(vet);
     }
 
     @Test
@@ -81,7 +102,18 @@ public class TratamientoControllerTest {
                 .andExpect(status().isNoContent());
     }
 
-    // Método de utilidad para convertir objetos Java a JSON
+    @Test
+    void testActualizarTratamiento() throws Exception {
+        when(tratamientoService.actualizarTratamiento(any(Tratamiento.class))).thenReturn(tratamiento);
+
+        mockMvc.perform(put("/api/tratamientos/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(tratamiento)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nombre").value("Vacunación"));
+    }
+
+    // Método auxiliar para convertir objetos a JSON
     private static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);

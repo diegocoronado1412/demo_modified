@@ -61,16 +61,48 @@ public class TratamientoServiceImpl implements TratamientoService {
 
     @Override
     public Tratamiento obtenerTratamientoPorId(Long id) {
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerTratamientoPorId'");
+        return tratamientoRepo.findById(id)
+            .orElseThrow(() -> new RuntimeException("Tratamiento no encontrado"));
     }
 
     @Override
     public Tratamiento actualizarTratamiento(Tratamiento tratamiento) {
-        throw new UnsupportedOperationException("Unimplemented method 'actualizarTratamiento'");
+        Tratamiento existente = tratamientoRepo.findById(tratamiento.getId())
+            .orElseThrow(() -> new RuntimeException("Tratamiento no encontrado"));
+    
+        // Validar y reasignar relaciones si han cambiado
+        if (tratamiento.getMascota() != null && tratamiento.getMascota().getId() != null) {
+            Mascota mascota = mascotaRepo.findById(tratamiento.getMascota().getId())
+                .orElseThrow(() -> new RuntimeException("Mascota no encontrada"));
+            existente.setMascota(mascota);
+        }
+    
+        if (tratamiento.getVeterinario() != null && tratamiento.getVeterinario().getId() != null) {
+            Veterinario vet = veterinarioRepo.findById(tratamiento.getVeterinario().getId())
+                .orElseThrow(() -> new RuntimeException("Veterinario no encontrado"));
+            existente.setVeterinario(vet);
+        }
+    
+        if (tratamiento.getDroga() != null && tratamiento.getDroga().getId() != null) {
+            Droga droga = drogaRepo.findById(tratamiento.getDroga().getId())
+                .orElseThrow(() -> new RuntimeException("Droga no encontrada"));
+            existente.setDroga(droga);
+        }
+    
+        existente.setNombre(tratamiento.getNombre());
+        existente.setDescripcion(tratamiento.getDescripcion());
+        existente.setFecha(new Date()); // se actualiza la fecha
+    
+        return tratamientoRepo.save(existente);
     }
+    
 
     @Override
     public void eliminarTratamiento(Long id) {
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarTratamiento'");
+        if (!tratamientoRepo.existsById(id)) {
+            throw new RuntimeException("Tratamiento no existe");
+        }
+        tratamientoRepo.deleteById(id);
     }
+    
 }
