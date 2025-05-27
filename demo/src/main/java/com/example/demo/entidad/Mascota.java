@@ -1,14 +1,19 @@
 package com.example.demo.entidad;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Mascota {
 
     @Id
@@ -30,9 +35,6 @@ public class Mascota {
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    public Mascota() {
-    }
-
     public Mascota(Long id, String nombre, String especie, String raza, Integer edad, String foto, Cliente cliente) {
         this.id = id;
         this.nombre = nombre;
@@ -43,7 +45,7 @@ public class Mascota {
         this.cliente = cliente;
     }
 
-    // Getters y Setters
+    // Getters y Setters ORIGINALES
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

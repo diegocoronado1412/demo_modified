@@ -9,7 +9,6 @@ public class ConfiguracionDTO {
     private String nuevosServicios;
     private String mensajeContacto;
 
-    // GETTERS y SETTERS (o usa Lombok si prefieres)
     public String getNombreClinica() {
         return nombreClinica;
     }
